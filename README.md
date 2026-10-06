@@ -1,2 +1,6 @@
+   # QA Automation Portfolio
 
-A ideia inicial e criar um repositorio para demonstrar a utilizacao de ferramentas e conceitos relacionados a automacao
+   ![Testes](https://github.com/GabrielHSLucas/qa-automation-portfolio/actions/workflows/testes.yml/badge.svg)
+
+   Projeto de automação de testes de API em Python (pytest + requests),
+   usando a API pública Restful-Booker.
