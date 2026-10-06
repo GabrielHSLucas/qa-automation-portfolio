@@ -1,6 +1,5 @@
 import requests
-
-BASE_URL = "https://restful-booker.herokuapp.com"
+from api.cliente import BASE_URL
 
 
 def test_servico_esta_no_ar():
