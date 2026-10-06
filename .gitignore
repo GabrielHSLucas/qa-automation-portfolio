@@ -1,0 +1,6 @@
+@"
+.venv/
+__pycache__/
+.pytest_cache/
+relatorio.xml
+"@ | Set-Content .gitignore
