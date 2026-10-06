@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  testes-api:
+  testes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,6 +18,9 @@ jobs:
 
       - name: Instalar dependências
         run: pip install -r requirements.txt
+
+      - name: Instalar navegador do Playwright
+        run: playwright install --with-deps chromium
 
       - name: Rodar testes
         run: pytest -v --junitxml=relatorio.xml

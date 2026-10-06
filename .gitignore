@@ -3,4 +3,5 @@
 __pycache__/
 .pytest_cache/
 relatorio.xml
+test-results/
 "@ | Set-Content .gitignore
