@@ -1,37 +1,34 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect
 
-URL = "https://www.saucedemo.com"
+from paginas.login_pagina import LoginPagina
+from paginas.produtos_pagina import ProdutosPagina
 
 
-def test_pagina_de_login_carrega(page: Page):
-    page.goto(URL)
+def test_pagina_de_login_carrega(page):
+    login = LoginPagina(page)
+    login.abrir()
     expect(page).to_have_title("Swag Labs")
-    expect(page.locator('[data-test="login-button"]')).to_be_visible()
+    expect(login.botao_entrar).to_be_visible()
 
 
-def test_login_valido_leva_aos_produtos(page: Page):
-    page.goto(URL)
-    page.locator('[data-test="username"]').fill("standard_user")
-    page.locator('[data-test="password"]').fill("secret_sauce")
-    page.locator('[data-test="login-button"]').click()
+def test_login_valido_leva_aos_produtos(page):
+    login = LoginPagina(page)
+    login.abrir()
+    login.entrar("standard_user", "secret_sauce")
 
-    expect(page).to_have_url(f"{URL}/inventory.html")
-    expect(page.locator('[data-test="inventory-item"]')).to_have_count(6)
-
-
-def test_login_com_senha_errada_mostra_erro(page: Page):
-    page.goto(URL)
-    page.locator('[data-test="username"]').fill("standard_user")
-    page.locator('[data-test="password"]').fill("senha-errada")
-    page.locator('[data-test="login-button"]').click()
-
-    expect(page.locator('[data-test="error"]')).to_contain_text("do not match")
+    expect(page).to_have_url(f"{LoginPagina.URL}/inventory.html")
+    expect(ProdutosPagina(page).itens).to_have_count(6)
 
 
-def test_usuario_bloqueado_nao_entra(page: Page):
-    page.goto(URL)
-    page.locator('[data-test="username"]').fill("locked_out_user")
-    page.locator('[data-test="password"]').fill("secret_sauce")
-    page.locator('[data-test="login-button"]').click()
+def test_login_com_senha_errada_mostra_erro(page):
+    login = LoginPagina(page)
+    login.abrir()
+    login.entrar("standard_user", "senha-errada")
+    expect(login.mensagem_erro).to_contain_text("do not match")
 
-    expect(page.locator('[data-test="error"]')).to_contain_text("locked out")
+
+def test_usuario_bloqueado_nao_entra(page):
+    login = LoginPagina(page)
+    login.abrir()
+    login.entrar("locked_out_user", "secret_sauce")
+    expect(login.mensagem_erro).to_contain_text("locked out")
