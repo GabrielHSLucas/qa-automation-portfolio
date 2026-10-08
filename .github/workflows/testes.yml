@@ -23,11 +23,11 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Rodar testes
-        run: pytest -v --junitxml=relatorio.xml
+        run: pytest -v --html=relatorio.html --self-contained-html
 
       - name: Guardar relatório
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: relatorio-testes
-          path: relatorio.xml
+          path: relatorio.html
