@@ -9,3 +9,6 @@ class CarrinhoPagina:
 
     def iniciar_checkout(self):
         self.botao_checkout.click()
+
+    def remover_produto(self, produto):
+        self.page.locator(f'[data-test="remove-{produto}"]').click()

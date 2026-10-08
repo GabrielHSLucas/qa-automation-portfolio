@@ -46,3 +46,16 @@ def test_checkout_sem_nome_mostra_erro(pagina_logada):
     checkout.preencher_dados("", "Lucas", "01000-000")
 
     expect(checkout.mensagem_erro).to_contain_text("First Name is required")
+
+def test_remover_produto_do_carrinho(pagina_logada):
+    produtos = ProdutosPagina(pagina_logada)
+    produtos.adicionar(PRODUTO)
+    produtos.abrir_carrinho()
+
+    carrinho = CarrinhoPagina(pagina_logada)
+    expect(carrinho.nomes_dos_produtos).to_have_text([NOME_DO_PRODUTO])
+
+    carrinho.remover_produto(PRODUTO)
+
+    expect(carrinho.nomes_dos_produtos).to_have_count(0)
+
