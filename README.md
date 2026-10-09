@@ -76,5 +76,5 @@ testes e guarda o relatório HTML como artefato da execução (aba **Actions**, 
 
 ## Observações
 
-- Ao criar uma reserva sem um campo obrigatório (`firstname`, `lastname`, `totalprice`, `depositpaid` ou `bookingdates`), a API devolve **500 (erro interno do servidor)**. O esperado seria 400 (requisição inválida). Os testes conferem apenas que a reserva não é aceita.
+- Ao criar uma reserva sem um campo obrigatório (`firstname`, `lastname`, `totalprice`, `depositpaid` ou `bookingdates`), a API devolve **500 (erro interno do servidor)**, e o esperado seria 400. Esses casos estão marcados como falha conhecida (`xfail`) e o teste avisa se o comportamento da API mudar.
 - O campo `additionalneeds` é opcional: a reserva é criada normalmente sem ele.
