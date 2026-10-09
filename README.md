@@ -71,6 +71,10 @@ testes e guarda o relatório HTML como artefato da execução (aba **Actions**, 
 
 ## Próximos passos
 
-- Testes parametrizados também para a API (combinações de dados inválidos)
 - Mais cenários de interface (ordenação de produtos, carrinho com vários itens)
 - Seção de observações com o que foi descoberto ao testar as APIs
+
+## Observações
+
+- Ao criar uma reserva sem um campo obrigatório (`firstname`, `lastname`, `totalprice`, `depositpaid` ou `bookingdates`), a API devolve **500 (erro interno do servidor)**. O esperado seria 400 (requisição inválida). Os testes conferem apenas que a reserva não é aceita.
+- O campo `additionalneeds` é opcional: a reserva é criada normalmente sem ele.
