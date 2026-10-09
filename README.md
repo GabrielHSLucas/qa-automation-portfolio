@@ -38,6 +38,7 @@ requirements.txt        dependências do projeto
 - **Page Object:** os elementos e as ações de cada tela ficam em `paginas/`, e a conferência (`expect`) fica no teste.
 - **Fixtures:** a preparação (token, reserva, login) fica em `conftest.py` e não se repete nos testes.
 - **Mais testes de API que de interface:** a API é mais rápida e estável, e a interface cobre só os fluxos principais.
+- **Testes parametrizados:** cenários que só mudam os dados (logins inválidos, campos obrigatórios) usam `parametrize`, com uma tabela de casos e um único roteiro de teste.
 
 ## Como rodar
 
@@ -70,6 +71,6 @@ testes e guarda o relatório HTML como artefato da execução (aba **Actions**, 
 
 ## Próximos passos
 
-- Testes parametrizados (`parametrize`) para os cenários de login
+- Testes parametrizados também para a API (combinações de dados inválidos)
 - Mais cenários de interface (ordenação de produtos, carrinho com vários itens)
 - Seção de observações com o que foi descoberto ao testar as APIs
