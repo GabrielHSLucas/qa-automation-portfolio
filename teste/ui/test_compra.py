@@ -6,6 +6,8 @@ from paginas.produtos_pagina import ProdutosPagina
 
 import pytest
 
+pytestmark = pytest.mark.ui
+
 
 PRODUTO = "sauce-labs-backpack"
 NOME_DO_PRODUTO = "Sauce Labs Backpack"

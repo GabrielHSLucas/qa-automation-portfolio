@@ -1,6 +1,8 @@
 import requests
 from api.cliente import BASE_URL
+import pytest
 
+pytestmark = pytest.mark.api
 
 def test_servico_esta_no_ar():
     resposta = requests.get(f"{BASE_URL}/ping")

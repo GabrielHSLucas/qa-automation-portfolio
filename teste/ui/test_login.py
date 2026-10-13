@@ -5,6 +5,9 @@ from paginas.produtos_pagina import ProdutosPagina
 
 import pytest
 
+pytestmark = pytest.mark.ui
+
+
 CASOS_LOGIN_INVALIDO = [
     ("standard_user", "senha-errada", "do not match"),
     ("locked_out_user", "secret_sauce", "locked out"),

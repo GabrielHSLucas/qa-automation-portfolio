@@ -1,5 +1,8 @@
 from api.cliente import DADOS_RESERVA, apagar_reserva, atualizar_reserva, consultar_reserva, criar_reserva
 
+import pytest
+
+pytestmark = pytest.mark.api
 
 def test_criar_reserva():
     resposta = criar_reserva()

@@ -2,6 +2,8 @@ from api.cliente import DADOS_RESERVA, apagar_reserva, atualizar_reserva, consul
 
 import pytest
 
+pytestmark = pytest.mark.api
+
 
 CASOS_LOGIN_API_INVALIDO = [
     ("admin", "senha-errada"),

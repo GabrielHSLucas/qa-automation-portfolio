@@ -1,3 +1,7 @@
+import pytest
+
+pytestmark = pytest.mark.dados
+
 
 def test_documentos_dos_clientes_nao_se_repetem(banco):
     duplicados = banco.execute(
