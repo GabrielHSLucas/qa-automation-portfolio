@@ -20,6 +20,9 @@ Python · pytest · requests · Playwright · pytest-html · GitHub Actions
 - Adicionar e remover produto do carrinho
 - Compra completa e erro no checkout com dados obrigatórios ausentes
 
+**Dados** (SQLite com dados fictícios)
+- Regras de negócio de contratos: documentos únicos, contratos sempre ligados a um cliente existente, valor total igual a parcelas vezes valor da parcela e valores positivos
+
 ## Estrutura
 
 ```
@@ -39,6 +42,7 @@ requirements.txt        dependências do projeto
 - **Fixtures:** a preparação (token, reserva, login) fica em `conftest.py` e não se repete nos testes.
 - **Mais testes de API que de interface:** a API é mais rápida e estável, e a interface cobre só os fluxos principais.
 - **Testes parametrizados:** cenários que só mudam os dados (logins inválidos, campos obrigatórios) usam `parametrize`, com uma tabela de casos e um único roteiro de teste.
+- **Dados fictícios:** os testes de banco usam dados inventados em SQLite em memória, sem informação real de cliente.
 
 ## Como rodar
 

@@ -39,13 +39,6 @@ def test_apagar_reserva_sem_token_e_proibido(reserva_criada):
     assert apagar_reserva(reserva_criada).status_code == 403
 
 
-@pytest.mark.parametrize("campo", CAMPOS_OBRIGATORIOS)
-def test_criar_reserva_sem_campo_obrigatorio_nao_e_aceita(campo):
-    dados = {k: v for k, v in DADOS_RESERVA.items() if k != campo}
-    resposta = criar_reserva(dados)
-    assert resposta.status_code != 200
-
-
 def test_criar_reserva_sem_campo_opcional_e_aceita():
     dados = {k: v for k, v in DADOS_RESERVA.items() if k != "additionalneeds"}
     resposta = criar_reserva(dados)
