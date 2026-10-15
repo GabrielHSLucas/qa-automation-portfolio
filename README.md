@@ -82,3 +82,4 @@ testes e guarda o relatório HTML como artefato da execução (aba **Actions**, 
 
 - Ao criar uma reserva sem um campo obrigatório (`firstname`, `lastname`, `totalprice`, `depositpaid` ou `bookingdates`), a API devolve **500 (erro interno do servidor)**, e o esperado seria 400. Esses casos estão marcados como falha conhecida (`xfail`) e o teste avisa se o comportamento da API mudar.
 - O campo `additionalneeds` é opcional: a reserva é criada normalmente sem ele.
+- O assistente simulado não reconhece instruções maliciosas (como "ignore as regras"): ele responde apenas pela palavra-chave "senha". Não vaza dados, mas não recusa de forma explícita. O caso está marcado como `xfail`.
