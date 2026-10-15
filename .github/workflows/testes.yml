@@ -21,7 +21,7 @@ jobs:
         run: pytest -m api -v --html=relatorio-api.html --self-contained-html
       - name: Guardar relatório
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: relatorio-api
           path: relatorio-api.html
@@ -40,7 +40,7 @@ jobs:
         run: pytest -m "dados or ia" -v --html=relatorio-dados.html --self-contained-html
       - name: Guardar relatório
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: relatorio-dados
           path: relatorio-dados.html
@@ -61,13 +61,13 @@ jobs:
         run: pytest -m ui -v --screenshot only-on-failure --html=relatorio-ui.html --self-contained-html
       - name: Guardar relatório
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: relatorio-ui
           path: relatorio-ui.html
       - name: Guardar capturas de tela das falhas
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: capturas-de-falha
           path: test-results/
