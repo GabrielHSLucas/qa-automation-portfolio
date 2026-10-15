@@ -73,11 +73,6 @@ pytest -v --html=relatorio.html --self-contained-html
 A cada push na `main`, o GitHub Actions instala as dependências e o navegador, roda todos os
 testes e guarda o relatório HTML como artefato da execução (aba **Actions**, seção **Artifacts**).
 
-## Próximos passos
-
-- Mais cenários de interface (ordenação de produtos, carrinho com vários itens)
-- Seção de observações com o que foi descoberto ao testar as APIs
-
 ## Observações
 
 - Ao criar uma reserva sem um campo obrigatório (`firstname`, `lastname`, `totalprice`, `depositpaid` ou `bookingdates`), a API devolve **500 (erro interno do servidor)**, e o esperado seria 400. Esses casos estão marcados como falha conhecida (`xfail`) e o teste avisa se o comportamento da API mudar.
