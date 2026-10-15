@@ -7,27 +7,67 @@ on:
   workflow_dispatch:
 
 jobs:
-  testes:
-    runs-on: ubuntu-latest
+  api:
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
+          cache: pip
       - name: Instalar dependências
         run: pip install -r requirements.txt
-
-      - name: Instalar navegador do Playwright
-        run: playwright install --with-deps chromium
-
-      - name: Rodar testes
-        run: pytest -v --html=relatorio.html --self-contained-html
-
+      - name: Rodar testes de API
+        run: pytest -m api -v --html=relatorio-api.html --self-contained-html
       - name: Guardar relatório
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: relatorio-testes
-          path: relatorio.html
+          name: relatorio-api
+          path: relatorio-api.html
+
+  dados:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+      - name: Rodar testes de dados e de IA
+        run: pytest -m "dados or ia" -v --html=relatorio-dados.html --self-contained-html
+      - name: Guardar relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-dados
+          path: relatorio-dados.html
+
+  interface:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+      - name: Instalar navegador do Playwright
+        run: playwright install --with-deps chromium
+      - name: Rodar testes de interface
+        run: pytest -m ui -v --screenshot only-on-failure --html=relatorio-ui.html --self-contained-html
+      - name: Guardar relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-ui
+          path: relatorio-ui.html
+      - name: Guardar capturas de tela das falhas
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas-de-falha
+          path: test-results/
